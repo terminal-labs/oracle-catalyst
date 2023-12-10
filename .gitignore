@@ -1,6 +1,8 @@
 *~
 *egg-info
 *.pyc
+log
+logs
 __pycache__
 
 .vagrant
@@ -9,6 +11,4 @@ __pycache__
 
 Vagrantfile
 activate.sh
-
-ubuntu-bionic-18.04-cloudimg-console.log
-ubuntu-xenial-16.04-cloudimg-console.log
+activate_vm.sh
