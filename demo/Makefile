@@ -31,7 +31,6 @@ download_bash_environment_manager:
   		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/bem-catalyst-main/patterns/* .tmp/patterns"; \
 	fi
 
-
 up: HOSTTYPE="vagrant"
 up: INTERNALUSER="vagrant"
 up: download_bash_environment_manager
