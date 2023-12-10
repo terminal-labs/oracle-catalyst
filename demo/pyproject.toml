@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "catalystdemo"
+version = "0.0.1"
+description = ""
+authors = ["Michael Verhulst <michael@terminallabs.com>"]
+readme = "README.md"
+packages = [{include = "catalystdemo", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.scripts]
+clusterdemo = 'catalystdemo.ux.cli:cli'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
