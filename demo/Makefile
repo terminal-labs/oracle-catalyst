@@ -1,4 +1,4 @@
-APPNAME="hologramdemo"
+APPNAME="oraclecatalystdemo"
 SUDOUSERNAME=$(SUDO_USER)
 CONFIGURATION="default"
 TYPE="python"
@@ -24,17 +24,17 @@ download_bash_environment_manager:
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/prep"; \
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/bem"; \
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/patterns"; \
-  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; wget -O hologram.zip https://github.com/terminal-labs/hologram/archive/refs/heads/main.zip"; \
-  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; unzip -n hologram.zip"; \
-  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/hologram-main/manager/* .tmp/bem"; \
-  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/hologram-main/patterns/* .tmp/patterns"; \
+  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; wget -O oracle-catalyst.zip https://github.com/terminal-labs/oracle-catalyst/archive/refs/heads/main.zip"; \
+  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; unzip -n oracle-catalyst.zip"; \
+  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/oracle-catalyst-main/manager/* .tmp/bem"; \
+  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/oracle-catalyst-main/patterns/* .tmp/patterns"; \
 	fi
 
 up: HOSTTYPE="host"
 up: INTERNALUSER=$(SUDO_USER)
 up: download_bash_environment_manager
 	@if test ! -f "Vagrantfile";then \
-		wget -O Vagrantfile https://raw.githubusercontent.com/terminal-labs/bash-environment-manager-shelf/main/vagrantfiles/large; \
+		cp .tmp/prep/oracle-catalyst-main/shelf/vagrantfiles/large Vagrantfile; \
 		chown $(SUDO_USER) Vagrantfile; \
 	fi
 	$(call kickoff)
