@@ -5,12 +5,8 @@ mkdir -p /home/$INSTALLUSER/.tlcache/bem/$APPNAME
 mkdir -p /home/$INSTALLUSER/.tlcache/bem/$APPNAME/vars
 chown -R $INSTALLUSER $FILE /home/$INSTALLUSER/.tlcache
 
-FILE=/home/$INSTALLUSER/.tlcache/bem/$APPNAME/vars/patternaptdeps
-if [ ! -f "$FILE" ]; then
-    bash .tmp/patterns/$PLUGIN/superuser/apt.sh
-    touch $FILE
-    chown $INSTALLUSER $FILE
-fi
+
+echo "venv deps"
 
 sudo su $INSTALLUSER <<'EOF'
   source .tmp/_commonenv.sh

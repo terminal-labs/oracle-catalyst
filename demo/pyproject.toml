@@ -1,16 +1,19 @@
 [tool.poetry]
-name = "catalystdemo"
+name = "hologramdemo"
 version = "0.0.1"
 description = ""
 authors = ["Michael Verhulst <michael@terminallabs.com>"]
 readme = "README.md"
-packages = [{include = "catalystdemo", from = "src"}]
+packages = [{include = "hologramdemo", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+click = "^8.1.7"
+bash = "^0.6"
+cli-passthrough = "^0.1.3"
 
 [tool.poetry.scripts]
-clusterdemo = 'catalystdemo.ux.cli:cli'
+hologramdemo = 'hologramdemo.ux.cli:cli'
 
 [build-system]
 requires = ["poetry-core"]

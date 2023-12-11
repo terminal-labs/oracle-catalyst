@@ -8,4 +8,7 @@ else
 cat > activate.sh <<EOF
 source /home/$INSTALLUSER/.tlcache/bem/$APPNAME/venv/bin/activate
 EOF
+cat > activate_vm.sh <<EOF
+source /home/vagrant/.tlcache/bem/$APPNAME/venv/bin/activate
+EOF
 fi

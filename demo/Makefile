@@ -1,4 +1,4 @@
-APPNAME="catalystdemo"
+APPNAME="hologramdemo"
 SUDOUSERNAME=$(SUDO_USER)
 CONFIGURATION="default"
 TYPE="python"
@@ -15,6 +15,7 @@ help:
 define kickoff
 	@bash .tmp/bem/common/user.sh $(APPNAME) $(SUDOUSERNAME) $(CONFIGURATION) $(TYPE) $(PYTHONVERSION) $(HOSTTYPE) $(INTERNALUSER) $(PLATFORM) $(PLUGIN) $(EXTRA)
 	@sudo bash .tmp/bem/common/superuser.sh $(APPNAME) $(SUDOUSERNAME) $(CONFIGURATION) $(TYPE) $(PYTHONVERSION) $(HOSTTYPE) $(INTERNALUSER) $(PLATFORM) $(PLUGIN) $(EXTRA)
+	@sudo bash .tmp/bem/common/superuser.sh $(APPNAME) $(SUDOUSERNAME) $(CONFIGURATION) $(TYPE) $(PYTHONVERSION) vagrant $(INTERNALUSER) $(PLATFORM) $(PLUGIN) $(EXTRA)
 endef
 
 download_bash_environment_manager:
@@ -23,19 +24,17 @@ download_bash_environment_manager:
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/prep"; \
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/bem"; \
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/patterns"; \
-  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; wget -O bash-environment-manager.zip https://github.com/terminal-labs/bash-environment-manager/archive/refs/heads/main.zip"; \
-  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; unzip -n bash-environment-manager.zip"; \
-  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/bash-environment-manager-main/* .tmp/bem"; \
-  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; wget -O bem-catalyst.zip https://github.com/terminal-labs/bem-catalyst/archive/refs/heads/main.zip"; \
-  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; unzip -n bem-catalyst.zip"; \
-  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/bem-catalyst-main/patterns/* .tmp/patterns"; \
+  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; wget -O hologram.zip https://github.com/terminal-labs/hologram/archive/refs/heads/main.zip"; \
+  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; unzip -n hologram.zip"; \
+  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/hologram-main/manager/* .tmp/bem"; \
+  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/hologram-main/patterns/* .tmp/patterns"; \
 	fi
 
-up: HOSTTYPE="vagrant"
-up: INTERNALUSER="vagrant"
+up: HOSTTYPE="host"
+up: INTERNALUSER=$(SUDO_USER)
 up: download_bash_environment_manager
 	@if test ! -f "Vagrantfile";then \
-		wget https://raw.githubusercontent.com/terminal-labs/bash-environment-manager-shelf/main/vagrantfiles/Vagrantfile; \
+		wget -O Vagrantfile https://raw.githubusercontent.com/terminal-labs/bash-environment-manager-shelf/main/vagrantfiles/large; \
 		chown $(SUDO_USER) Vagrantfile; \
 	fi
 	$(call kickoff)
